@@ -3,6 +3,7 @@ import asyncio
 
 
 
+
 def main():
 
     url_moscow = "https://online.metro-cc.ru/category/chaj-kofe-kakao/kofe?from=under_search&in_stock=1"
@@ -10,9 +11,9 @@ def main():
 
     obj = Parser()
 
-    """"Создаем файл, куда будем сохранять данные"""""
-
-    obj.make_file("data_saint_petersbourg")
+    # """"Создаем файл, куда будем сохранять данные"""""
+    #
+    # obj.make_file("data_moscow")
 
     """"Получаем список из страниц"""""
     lst_pages = obj.get_pages_url(url_saint_petersbourg)

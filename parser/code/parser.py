@@ -8,6 +8,7 @@ from aiohttp_retry import RetryClient, ExponentialRetry
 from headers import headers
 from fake_useragent import UserAgent
 import csv
+import numpy as np
 
 def save_error(name_file, message_error):
     with open(f"{name_file}.txt", "r") as file:
@@ -150,12 +151,20 @@ class Parser:
                 tasks.append(task)
             await asyncio.gather(*tasks)
 
+        # Записываем все данные в DataFrame
+
         self.file["id"] = pd.Series(self.lst_all_id)
         self.file["Название"] = pd.Series(self.lst_all_titles)
         self.file["Цена со скидкой"] = pd.Series(self.lst_all_actual_prices)
         self.file["Цена без скидки"] = pd.Series(self.lst_all_old_prices)
         self.file["Бренд"] = pd.Series(self.lst_all_brands)
         self.file["Ссылка"] = pd.Series(self.lst_all_links)
+
+        self.file["Цена без скидки"] = self.file["Цена без скидки"].replace('', np.nan)
+
+        mask = self.file["Цена без скидки"].isnull()
+
+        self.file.loc[mask, ["Цена со скидкой", "Цена без скидки"]] = self.file.loc[mask, ["Цена без скидки", "Цена со скидкой"]].to_numpy()
 
         self.file.to_csv(rf"C:\Parser_Metro\parser\{name_file_save}.csv", index=False)
 
