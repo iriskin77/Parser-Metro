@@ -5,16 +5,17 @@ import asyncio
 
 def main():
 
-    url = "https://online.metro-cc.ru/category/chaj-kofe-kakao/kofe?from=under_search"
+    url_moscow = "https://online.metro-cc.ru/category/chaj-kofe-kakao/kofe?from=under_search&in_stock=1"
+    url_saint_petersbourg = "https://online.metro-cc.ru/category/chaj-kofe-kakao/kofe?from=under_search&in_stock=1"
 
     obj = Parser()
 
     """"Создаем файл, куда будем сохранять данные"""""
 
-    obj.make_file("data")
+    obj.make_file("data_saint_petersbourg")
 
     """"Получаем список из страниц"""""
-    lst_pages = obj.get_pages_url(url)
+    lst_pages = obj.get_pages_url(url_saint_petersbourg)
 
     """"Получаем список Название, цену, ссылку на товар, они сохраняются в памяти в объекте класса"""""
     obj.get_title_price(lst_pages)
@@ -26,7 +27,7 @@ def main():
     """"Собираем id и брэнд с каждой карточки """""
 
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    asyncio.run(obj.main_parser(lst_goods, "data"))
+    asyncio.run(obj.main_parser(lst_goods, "data_saint_petersbourg"))
 
 if __name__ == '__main__':
     main()

@@ -9,8 +9,6 @@ from headers import headers
 from fake_useragent import UserAgent
 import csv
 
-url = "https://online.metro-cc.ru/category/chaj-kofe-kakao/kofe?from=under_search"
-
 def save_error(name_file, message_error):
     with open(f"{name_file}.txt", "r") as file:
         file.writelines(message_error)
@@ -54,11 +52,11 @@ class Parser:
             for num_page in range(1, last_page + 1):
                 if num_page < 2:
                     """"Получаем первую страницу"""""
-                    link_page = self.main_page + "/category/chaj-kofe-kakao/kofe?from=under_search"
+                    link_page = self.main_page + "/category/chaj-kofe-kakao/kofe?from=under_search&in_stock=1"
                     lst_links_pages.append(link_page)
                 else:
                     """"Получаем все остальные страницы"""""
-                    link_page = self.main_page + f"/category/chaj-kofe-kakao/kofe?from=under_search&page={num_page}"
+                    link_page = self.main_page + f"/category/chaj-kofe-kakao/kofe?from=under_search&in_stock=1&page={num_page}"
                     lst_links_pages.append(link_page)
         else:
             return response.status_code
@@ -127,12 +125,6 @@ class Parser:
                 self.lst_all_links.extend(all_links)
             except Exception as ex:
                 save_error("errors", f"all_links {str(self.get_title_price.__name__)} {str(ex)}")
-
-        print("Длина списка с заголовками" ,len(self.lst_all_titles))
-        print("Длина списка с ценой со скидкой", len(self.lst_all_actual_prices))
-        print("Длина списка с без скидки", len(self.lst_all_old_prices))
-        print("Длина списка со ссылками", len(self.lst_all_links))
-
 
         #self.file.to_csv(r"C:\Parser_Metro\parser\data2.csv")
 
