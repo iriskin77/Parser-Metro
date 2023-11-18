@@ -98,9 +98,6 @@ class Parser:
             try:
                 act_pr = []
                 actual_prices = soup.find_all("div", class_="product-unit-prices__actual-wrapper")
-                # for price in actual_prices:
-                #     pr = unidecode.unidecode(price.find("span", class_="product-price__sum-rubles").text.strip())
-                #     act_pr.append([p for p in pr if p.isdigit()])
                 actual_prices = [unidecode.unidecode(p.find("span", class_="product-price__sum-rubles").text.strip()) for p in actual_prices]
                 self.lst_all_actual_prices.extend(actual_prices)
 
@@ -110,11 +107,7 @@ class Parser:
             try:
                 old_pr = []
                 old_prices = soup.find_all("div", class_="product-unit-prices__old-wrapper")
-                # for price in old_prices:
-                #     pr = unidecode.unidecode(price.get_text(strip=True))
-                #     old_pr.append([i for i in pr if i.isdigit() or i == ''])
                 old_prices = [unidecode.unidecode(p.get_text(strip=True)).rstrip("d/sht") for p in old_prices]
-                # print(old_pr)
                 self.lst_all_old_prices.extend(old_prices)
 
             except Exception as ex:
