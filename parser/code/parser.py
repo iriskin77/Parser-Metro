@@ -84,29 +84,29 @@ class Parser:
         return lst_all_goods
 
 
-    def get_title_price(self, lst_links_pages):
-        """"Функция принимает список со страницами и возвращает словари с ключами title, actual_price, old_price, link, словари записываются в файл"""""
+    def get_title_price(self, lst_links_pages: list[str]):
+        """"Функция принимает список со страницами с товарами и записывает title, actual_price, old_price, link в списки"""""
 
         for link_page in lst_links_pages:
             response = requests.get(url=link_page)
             soup = BeautifulSoup(response.text, "lxml")
+            # Получаем название товара
             try:
                 lst_title = soup.find_all("span", class_="product-card-name__text")
                 titles = [t.text.strip() for t in lst_title]
                 self.lst_all_titles.extend(titles)
             except Exception as ex:
                 save_error("errors", f"titles {str(self.get_title_price.__name__)} {str(ex)}")
+            # Получаем актуальну цену товара
             try:
-                act_pr = []
                 actual_prices = soup.find_all("div", class_="product-unit-prices__actual-wrapper")
                 actual_prices = [unidecode.unidecode(p.find("span", class_="product-price__sum-rubles").text.strip()) for p in actual_prices]
                 self.lst_all_actual_prices.extend(actual_prices)
 
             except Exception as ex:
                 save_error("errors", f"actual_prices {str(self.get_title_price.__name__)} {str(ex)}")
-
+            # Получаем старую цену товара
             try:
-                old_pr = []
                 old_prices = soup.find_all("div", class_="product-unit-prices__old-wrapper")
                 old_prices = [unidecode.unidecode(p.get_text(strip=True)).rstrip("d/sht") for p in old_prices]
                 self.lst_all_old_prices.extend(old_prices)
@@ -120,10 +120,8 @@ class Parser:
             except Exception as ex:
                 save_error("errors", f"all_links {str(self.get_title_price.__name__)} {str(ex)}")
 
-        #self.file.to_csv(r"C:\Parser_Metro\parser\data2.csv")
-
     async def get_info(self, session, link_good, headers):
-        """"Функция принимает ссылку на карточку с товаром и возвращает словарь с ключами id, title, brand"""""
+        """"Функция принимает ссылку на карточку с товаром и возвращает списки с id, brand"""""
         retry_options = ExponentialRetry(attempts=5)
         retry_client = RetryClient(raise_for_status=False, retry_options=retry_options, client_session=session, start_timeout=0.5)
         async with retry_client.get(url=link_good, headers=headers) as response:
@@ -166,5 +164,6 @@ class Parser:
 
         self.file.loc[mask, ["Цена со скидкой", "Цена без скидки"]] = self.file.loc[mask, ["Цена без скидки", "Цена со скидкой"]].to_numpy()
 
+        # Сохраняем DataFrame в файл .csv
         self.file.to_csv(rf"C:\Parser_Metro\parser\{name_file_save}.csv", index=False)
 
