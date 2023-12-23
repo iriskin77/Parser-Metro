@@ -1,35 +1,27 @@
-from parser import Parser
-import asyncio
+from parser.src.main_parser import ParserMetro
+from src.config import settings
+from fake_useragent import UserAgent
 
+ua = UserAgent()
 
+url_main = "https://online.metro-cc.ru/category/sladosti-chipsy-sneki/konfety-podarochnye-nabory"
 
+path_file = settings.get_path()
+name_file = 'products Metro4'
+headers = settings.get_headers()
+
+headers2 = {
+        "User-Agent": ua.safari,
+        'Accept-Language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'Accept-Encoding': 'gzip, deflate, br',
+    }
 
 def main():
 
-    url_moscow = "https://online.metro-cc.ru/category/chaj-kofe-kakao/kofe?from=under_search&in_stock=1"
-    url_saint_petersbourg = "https://online.metro-cc.ru/category/chaj-kofe-kakao/kofe?from=under_search&in_stock=1"
-    url_cheese_spb = "https://online.metro-cc.ru/category/molochnye-prodkuty-syry-i-yayca/syry"
+    pars = ParserMetro(url_main, headers2, path_file, name_file)
+    pars()
 
-    obj = Parser()
-
-    # """"Создаем файл, куда будем сохранять данные"""""
-    #
-    # obj.make_file("data_moscow")
-
-    """"Получаем список из страниц"""""
-    lst_pages = obj.get_pages_url(url_cheese_spb)
-
-    """"Получаем список Название, цену, ссылку на товар, они сохраняются в памяти в объекте класса"""""
-    obj.get_title_price(lst_pages)
-
-    """"Получаем список ссылок на каждый товар"""""
-
-    lst_goods = obj.get_goods_url(lst_pages)
-
-    """"Собираем id и брэнд с каждой карточки """""
-
-    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-    asyncio.run(obj.main_parser(lst_goods, "cheese_saint_petersbourg"))
 
 if __name__ == '__main__':
     main()
