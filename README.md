@@ -33,7 +33,7 @@ id товара из сайта/приложения,
 ## Как работает парсер
 
 
-![](https://github.com/iriskin77/Habr_parser_api/blob/master/images/ParserMetro.png)
+![](https://github.com/iriskin77/Metro_Parser/blob/master/images/ParserMetro.png)
 
 Парсер состоит из четырех классов: ParserMetroMixin ParserMetro ParserIdBrand ParserDetail
 
