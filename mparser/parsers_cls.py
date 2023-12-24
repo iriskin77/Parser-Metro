@@ -1,15 +1,12 @@
-import requests
 import re
 import unidecode
 import asyncio
 import aiohttp
 from bs4 import BeautifulSoup
 from aiohttp_retry import RetryClient, ExponentialRetry
-from requests.adapters import HTTPAdapter
-from mparser.utils import ParserMetroMixin
-from mparser.logg import init_logger
+from mparser.mixin import ParserMetroMixin
+from mparser.logs.logg import init_logger
 
-prox = {"http": "http://217.29.53.133:11012"}
 
 class ParserIdBrand(ParserMetroMixin):
 
@@ -26,7 +23,6 @@ class ParserIdBrand(ParserMetroMixin):
         self.logger.info(f'Fn get_products_links has started')
 
         links_all_products = []
-        print('LINKS_PAGES FROM get_products_links',  lst_links_pages)
         for page_link in lst_links_pages:
             try:
                 response, resp_status = self.make_request(url=page_link, headers=headers, prox=prox)
@@ -141,19 +137,15 @@ class ParserDetail(ParserMetroMixin):
                         # Get products names
                         lst_title = soup.find_all("span", class_="product-card-name__text")
                         titles = [t.text.strip() for t in lst_title]
-                        print('titles', titles)
                         # Get products prices
                         actual_prices = soup.find_all("div", class_="product-unit-prices__actual-wrapper")
                         actual_prices = [unidecode.unidecode(p.find("span", class_="product-price__sum-rubles").text.strip()) for p in actual_prices]
-                        print('actual_prices', actual_prices)
                         # Get products prices
                         old_prices = soup.find_all("div", class_="product-unit-prices__old-wrapper")
                         old_prices = [unidecode.unidecode(p.get_text(strip=True)).rstrip("d/sht") for p in old_prices]
-                        print('old_prices', old_prices)
                         # Get products links
                         all_links = soup.find_all("a", class_="product-card-name reset-link catalog-2-level-product-card__name style--catalog-2-level-product-card")
                         all_links = [self.main_page + p["href"] for p in all_links]
-                        print('all_links', all_links)
 
                         for i in range(len(titles)):
                             key = titles[i]

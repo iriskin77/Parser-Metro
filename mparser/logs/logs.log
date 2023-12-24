@@ -1,0 +1,30 @@
+2023-12-24 21:10:40,511, — INFO — module: mparser.metro_parser — The parser has started
+2023-12-24 21:10:40,511, — INFO — module: mparser.metro_parser — Fn get_pages_url has started
+2023-12-24 21:18:01,152, — INFO — module: mparser.metro_parser — The parser has started
+2023-12-24 21:18:01,153, — INFO — module: mparser.metro_parser — Fn get_pages_url has started
+2023-12-24 21:25:06,877, — INFO — module: mparser.metro_parser — The parser has started
+2023-12-24 21:25:06,877, — INFO — module: mparser.metro_parser — Fn get_pages_url has started
+2023-12-24 21:25:09,269, — INFO — module: mparser.metro_parser — Fn get_pages_url Success to connect
+2023-12-24 21:25:09,396, — INFO — module: mparser.metro_parser — Fn get_pages_url has finished correctly
+2023-12-24 21:25:09,396, — INFO — module: mparser.metro_parser — Fn get_info_products has started
+2023-12-24 21:25:38,839, — INFO — module: mparser.metro_parser — The parser has started
+2023-12-24 21:25:38,839, — INFO — module: mparser.metro_parser — Fn get_pages_url has started
+2023-12-24 21:25:41,263, — INFO — module: mparser.metro_parser — Fn get_pages_url Success to connect
+2023-12-24 21:25:41,403, — INFO — module: mparser.metro_parser — Fn get_pages_url has finished correctly
+2023-12-24 21:25:41,404, — INFO — module: mparser.metro_parser — Fn get_info_products has started
+2023-12-24 21:25:58,295, — INFO — module: mparser.metro_parser — The parser has started
+2023-12-24 21:25:58,295, — INFO — module: mparser.metro_parser — Fn get_pages_url has started
+2023-12-24 21:26:00,437, — INFO — module: mparser.metro_parser — Fn get_pages_url Success to connect
+2023-12-24 21:26:00,567, — INFO — module: mparser.metro_parser — Fn get_pages_url has finished correctly
+2023-12-24 21:26:00,568, — INFO — module: mparser.metro_parser — Fn get_info_products has started
+2023-12-24 21:26:14,126, — INFO — module: mparser.metro_parser — The parser has started
+2023-12-24 21:26:14,126, — INFO — module: mparser.metro_parser — Fn get_pages_url has started
+2023-12-24 21:26:19,264, — INFO — module: mparser.metro_parser — Fn get_pages_url Success to connect
+2023-12-24 21:26:19,406, — INFO — module: mparser.metro_parser — Fn get_pages_url has finished correctly
+2023-12-24 21:26:19,407, — INFO — module: mparser.metro_parser — Fn get_info_products has started
+2023-12-24 21:26:24,879, — INFO — module: mparser.metro_parser — Fn get_info_products has finished correctly
+2023-12-24 21:26:24,879, — INFO — module: mparser.metro_parser — Fn get_products_links has started
+2023-12-24 21:27:34,735, — INFO — module: mparser.metro_parser — Fn get_products_links has finished correctly
+2023-12-24 21:27:34,736, — INFO — module: mparser.metro_parser — Fn get_cards_info has started
+2023-12-24 21:28:10,379, — INFO — module: mparser.metro_parser — Fn get_cards_info has finished correctly
+2023-12-24 21:28:10,384, — INFO — module: mparser.metro_parser — The parser has finished correctly, data was loaded into json. Next start in 24 hours
