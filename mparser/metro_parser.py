@@ -1,10 +1,11 @@
 import json
 from datetime import datetime
 from random import choice
-from mparser.logg import init_logger
-from mparser.parsers_cls import ParserDetail, ParserIdBrand
-from mparser.config import settings
 from apscheduler.schedulers.background import BlockingScheduler
+from .logs.logg import init_logger
+from mparser.parsers_cls import ParserDetail, ParserIdBrand
+from mparser.config.config import settings
+
 
 class ParserMetro(ParserDetail, ParserIdBrand):
 
@@ -15,6 +16,7 @@ class ParserMetro(ParserDetail, ParserIdBrand):
         self.prox = prox
         self.scheduler = BlockingScheduler()
         self.headers = settings.get_headers()
+        self.path_file = settings.get_path()
 
     def merge_jsons(self, json_brands, json_names):
         for key in json_names:
@@ -32,7 +34,7 @@ class ParserMetro(ParserDetail, ParserIdBrand):
         self.collect_info_cards(links_pages, self.headers)
         self.collect_id_brand(links_pages, self.headers, proxi)
         js = self.merge_jsons(self.products_id_brand, self.products_detail)
-        with open(f"products_candies.json", "w", encoding="utf-8") as file:
+        with open(f"{self.path_file}/data/products_candies.json", "w", encoding="utf-8") as file:
             json.dump(js, file, indent=4, ensure_ascii=False)
         self.logger.info("The parser has finished correctly, data was loaded into json. Next start in 24 hours")
 

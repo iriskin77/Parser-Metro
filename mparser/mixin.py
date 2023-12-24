@@ -1,10 +1,7 @@
 import requests
-from mparser.logg import init_logger
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
-
-prox = {"http": "http://217.29.53.133:11012"}
-
+from mparser.logs.logg import init_logger
 
 class ParserMetroMixin:
 
