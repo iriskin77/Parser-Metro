@@ -19,8 +19,11 @@ class Settings:
         return abs_path
 
     def get_headers(self):
-        self.headers["User-Agent"] = self.fake_headers.safari
+        self.headers["User-Agent"] = self.fake_headers.random
         return self.headers
+
+    def set_fake_ua(self):
+        self.headers["User-Agent"] = self.fake_headers.random
 
 
 settings = Settings()

@@ -11,7 +11,7 @@ def init_logger(name: str, level: int | Literal['DEBUG', 'INFO', 'WARNING', 'ERR
     logger = logging.getLogger(name)
     logger.setLevel(level)
     console_log = logging.StreamHandler()
-    file_log = logging.FileHandler(filename='logs\\logs.log', mode='a')
+    file_log = logging.FileHandler(filename='mparser\\logs.log', mode='a')
     console_log.setFormatter(logging.Formatter(
         '%(asctime)s, — %(levelname)s — module: %(name)s — %(message)s'))
     file_log.setFormatter(logging.Formatter(

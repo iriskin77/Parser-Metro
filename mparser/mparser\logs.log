@@ -1,0 +1,38 @@
+2023-12-24 17:20:42,417, — INFO — module: mparser.main_parser — Fn get_pages_url has started
+2023-12-24 17:20:47,510, — CRITICAL — module: mparser.main_parser — Fn get_pages_url has finished incorrectly. Bad request: 404
+2023-12-24 17:20:47,511, — INFO — module: mparser.main_parser — Fn get_info_products has started
+2023-12-24 17:21:39,350, — INFO — module: mparser.main_parser — Fn get_pages_url has started
+2023-12-24 17:22:04,775, — INFO — module: mparser.main_parser — Fn get_pages_url Success to connect
+2023-12-24 17:22:04,919, — INFO — module: mparser.main_parser — Fn get_pages_url has finished correctly
+2023-12-24 17:22:04,920, — INFO — module: mparser.main_parser — Fn get_info_products has started
+2023-12-24 17:24:56,727, — INFO — module: mparser.main_parser — Fn get_info_products has finished correctly
+2023-12-24 17:24:56,727, — INFO — module: mparser.main_parser — Fn get_products_links has started
+2023-12-24 17:25:51,418, — CRITICAL — module: mparser.main_parser — Fn get_products_links has finished incorrectly. Bad request: 404
+2023-12-24 17:28:22,355, — CRITICAL — module: mparser.main_parser — Fn get_products_links has finished incorrectly. Bad request: 404
+2023-12-24 17:28:30,280, — CRITICAL — module: mparser.main_parser — Fn get_products_links has finished incorrectly. Bad request: 404
+2023-12-24 17:28:47,075, — CRITICAL — module: mparser.main_parser — Fn get_products_links has finished incorrectly. Bad request: 404
+2023-12-24 17:29:19,301, — INFO — module: mparser.main_parser — Fn get_products_links has finished correctly
+2023-12-24 17:29:19,302, — INFO — module: mparser.main_parser — Fn get_cards_info has started
+2023-12-24 17:30:38,395, — INFO — module: mparser.main_parser — Fn get_cards_info has finished correctly
+2023-12-24 17:46:28,933, — INFO — module: mparser.main_parser — Fn get_pages_url has started
+2023-12-24 17:46:31,111, — INFO — module: mparser.main_parser — Fn get_pages_url Success to connect
+2023-12-24 17:46:31,284, — INFO — module: mparser.main_parser — Fn get_pages_url has finished correctly
+2023-12-24 17:46:31,285, — INFO — module: mparser.main_parser — Fn get_info_products has started
+2023-12-24 17:46:40,256, — INFO — module: mparser.main_parser — Fn get_info_products has finished correctly
+2023-12-24 17:46:40,257, — INFO — module: mparser.main_parser — Fn get_products_links has started
+2023-12-24 17:48:24,523, — INFO — module: mparser.main_parser — Fn get_products_links has finished correctly
+2023-12-24 17:48:24,524, — INFO — module: mparser.main_parser — Fn get_cards_info has started
+2023-12-24 17:49:10,769, — INFO — module: mparser.main_parser — Fn get_cards_info has finished correctly
+2023-12-24 19:17:30,774, — INFO — module: mparser.main_parser — Fn get_pages_url has started
+2023-12-24 19:17:41,417, — INFO — module: mparser.main_parser — Fn get_pages_url has started
+2023-12-24 19:17:51,109, — INFO — module: mparser.main_parser — Fn get_pages_url Success to connect
+2023-12-24 19:17:51,243, — INFO — module: mparser.main_parser — Fn get_pages_url has finished correctly
+2023-12-24 19:17:51,244, — INFO — module: mparser.main_parser — Fn get_info_products has started
+2023-12-24 19:18:00,461, — INFO — module: mparser.main_parser — Fn get_info_products has finished correctly
+2023-12-24 19:18:00,462, — INFO — module: mparser.main_parser — Fn get_products_links has started
+2023-12-24 19:18:43,028, — CRITICAL — module: mparser.main_parser — Fn get_products_links. Failed to connect to a page to get products links. Bad request: 404
+2023-12-24 19:18:46,331, — CRITICAL — module: mparser.main_parser — Fn get_products_links. Failed to connect to a page to get products links. Bad request: 500
+2023-12-24 19:18:48,833, — CRITICAL — module: mparser.main_parser — Fn get_products_links. Failed to connect to a page to get products links. Bad request: 404
+2023-12-24 19:19:51,969, — INFO — module: mparser.main_parser — Fn get_products_links has finished correctly
+2023-12-24 19:19:51,970, — INFO — module: mparser.main_parser — Fn get_cards_info has started
+2023-12-24 19:20:30,907, — INFO — module: mparser.main_parser — Fn get_cards_info has finished correctly
