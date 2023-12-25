@@ -1,6 +1,7 @@
 from fake_useragent import UserAgent
 from pathlib import Path
 
+
 class Settings:
 
     def __init__(self):
@@ -12,7 +13,6 @@ class Settings:
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'Accept-Encoding': 'gzip, deflate, br',
     }
-
 
     def get_path(self):
         abs_path: Path = Path(__file__).resolve().parent.parent

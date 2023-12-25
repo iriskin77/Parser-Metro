@@ -9,7 +9,6 @@ from mparser.config.config import settings
 
 class ParserMetro(ParserDetail, ParserIdBrand):
 
-    logger = init_logger(__name__)
 
     def __init__(self, url_main: str, prox: list[dict]):
         self.url_main = url_main

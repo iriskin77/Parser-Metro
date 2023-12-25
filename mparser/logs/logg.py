@@ -2,8 +2,8 @@ import logging
 from typing import Literal
 from mparser.config.config import settings
 
-def init_logger(name: str, level: int | Literal['DEBUG', 'INFO', 'WARNING', 'ERROR'] = logging.INFO):
 
+def init_logger(name: str, level: int | Literal['DEBUG', 'INFO', 'WARNING', 'ERROR'] = logging.INFO):
 
     if isinstance(level, str):
         level = getattr(logging, level)

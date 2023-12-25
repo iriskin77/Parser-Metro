@@ -3,9 +3,12 @@ from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
 from mparser.logs.logg import init_logger
 
+
 class ParserMetroMixin:
 
     logger = init_logger(__name__)
+
+    main_page = "https://online.metro-cc.ru"
 
     def make_request(self, url: str, headers: dict, prox: dict):
         adapter = HTTPAdapter(max_retries=4)
@@ -22,7 +25,7 @@ class ParserMetroMixin:
         """"Input: link to a page with category (meet, bread etc.).
             Output: the function returns a list with pages"""""
 
-        self.logger.info(f'Fn get_pages_url has started')
+        self.logger.info('Fn get_pages_url has started')
         lst_links_pages = []
 
         try:
@@ -31,7 +34,7 @@ class ParserMetroMixin:
             response, resp_status = self.make_request(url=url, headers=headers, prox=prox)
 
         if resp_status == 200:
-            self.logger.info(f'Fn get_pages_url Success to connect')
+            self.logger.info('Fn get_pages_url Success to connect')
 
             soup = BeautifulSoup(response.text, "lxml")
             lst_links = soup.find('ul', class_="catalog-paginate v-pagination").find_all('a', class_="v-pagination__item catalog-paginate__item")
@@ -53,7 +56,7 @@ class ParserMetroMixin:
             return lst_links_pages
 
         else:
-            self.logger.critical(f'Fn get_pages_url has finished incorrectly. Bad request: {resp_status}')
+            self.logger.critical('Fn get_pages_url has finished incorrectly. Bad request: {resp_status}')
 
     def check_instock_page(self, soup: BeautifulSoup) -> bool:
 
@@ -62,4 +65,3 @@ class ParserMetroMixin:
         if check_goods == []:
             return True
         return False
-

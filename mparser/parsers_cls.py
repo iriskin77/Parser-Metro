@@ -5,14 +5,9 @@ import aiohttp
 from bs4 import BeautifulSoup
 from aiohttp_retry import RetryClient, ExponentialRetry
 from mparser.mixin import ParserMetroMixin
-from mparser.logs.logg import init_logger
 
 
 class ParserIdBrand(ParserMetroMixin):
-
-    logger = init_logger(__name__)
-
-    main_page = "https://online.metro-cc.ru"
 
     products_id_brand = {}
 
@@ -20,7 +15,7 @@ class ParserIdBrand(ParserMetroMixin):
         """"Input: links to pages with products.
             Output: the function returns a list with links to all product cards"""""
 
-        self.logger.info(f'Fn get_products_links has started')
+        self.logger.info('Fn get_products_links has started')
 
         links_all_products = []
         for page_link in lst_links_pages:
@@ -38,9 +33,9 @@ class ParserIdBrand(ParserMetroMixin):
                     for product_link in products_links:
                         links_all_products.append(product_link)
             else:
-                self.logger.critical(f'Fn get_products_links. Failed to connect to a page to get products links. Bad request: {resp_status}')
+                self.logger.critical('Fn get_products_links. Failed to connect to a page to get products links. Bad request: {resp_status}')
 
-        self.logger.info(f'Fn get_products_links has finished correctly')
+        self.logger.info('Fn get_products_links has finished correctly')
         return links_all_products
 
     async def get_id_brand(self, session, link_product_card: str, headers: dict) -> None:
@@ -73,20 +68,20 @@ class ParserIdBrand(ParserMetroMixin):
                 }
 
             else:
-                self.logger.warning(f"Fn get_id_brand works incorrectly. Bad request: {response.status}")
+                self.logger.warning("Fn get_id_brand works incorrectly. Bad request: {response.status}")
 
     async def get_cards_info(self, links_product_cards: list[str], headers) -> None:
         """"Input: links to product cards.
             Output: the function retrieves id and brand from all product cards"""""
 
-        self.logger.info(f'Fn get_cards_info has started')
+        self.logger.info('Fn get_cards_info has started')
         async with aiohttp.ClientSession(headers=headers) as session:
             tasks = []
             for link_product in links_product_cards:
                 task = asyncio.create_task(self.get_id_brand(session=session, link_product_card=link_product, headers=headers))
                 tasks.append(task)
             await asyncio.gather(*tasks)
-            self.logger.info(f'Fn get_cards_info has finished correctly')
+            self.logger.info('Fn get_cards_info has finished correctly')
 
     def collect_id_brand(self, checked_pages: list[str], headers: dict, prox: dict):
         """"Input: link to a page with category (meet, bread, etc.).
@@ -100,15 +95,11 @@ class ParserDetail(ParserMetroMixin):
 
     products_detail = {}
 
-    logger = init_logger(__name__)
-
-    main_page = "https://online.metro-cc.ru"
-
     async def get_info_products(self, list_links_pages: list[str], headers: dict) -> None:
         """"Input: link to all pages with products.
             Output: the function retrieves names, prices, links of all products"""""
 
-        self.logger.info(f'Fn get_info_products has started')
+        self.logger.info('Fn get_info_products has started')
 
         async with aiohttp.ClientSession(headers=headers) as session:
             tasks = []
@@ -116,7 +107,7 @@ class ParserDetail(ParserMetroMixin):
                 task = asyncio.create_task(self.get_info_product(session=session, link_page=link_page, headers=headers))
                 tasks.append(task)
             await asyncio.gather(*tasks)
-            self.logger.info(f'Fn get_info_products has finished correctly')
+            self.logger.info('Fn get_info_products has finished correctly')
 
     async def get_info_product(self, session, link_page: str, headers: dict) -> None:
             """"Input: link to a page with products.
@@ -156,7 +147,6 @@ class ParserDetail(ParserMetroMixin):
 
                     except Exception as ex:
                         self.logger.warning(f'Fn get_info_product. Failed to retrieve products titles, prices, links. Message error: {ex}')
-
 
     def collect_info_cards(self, checked_pages: list[str], headers: dict) -> None:
         """"Input: link to a page with category (meet, bread, etc.).
